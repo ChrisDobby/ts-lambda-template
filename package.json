@@ -1,0 +1,39 @@
+{
+  "name": "typescript-lambda-template",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "lint": "node_modules/.bin/tslint -c tslint.json 'src/**/*.ts'",
+    "clean-dist": "npm run remove-dist && mkdir dist",
+    "remove-dist": "node_modules/.bin/rimraf ./dist",
+    "prebuild": "npm-run-all typecheck clean-dist lint",
+    "build": "webpack --config ./webpack.config.js --hide-modules --progress --colors",
+    "postbuild": "node tools/create-zip.js ./dist",
+    "typecheck": "tsc --noEmit",
+    "prettier": "prettier \"**/*.+(ts)\"",
+    "format": "npm run prettier -- --write"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "adm-zip": "^0.4.13",
+    "babel-loader": "^8.0.5",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.17.0",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.5",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2"
+  }
+}
